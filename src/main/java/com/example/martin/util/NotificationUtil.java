@@ -1,6 +1,6 @@
 package com.example.martin.util;
 
-import com.example.martin.domain.Constants;
+import com.example.martin.config.Constants;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;

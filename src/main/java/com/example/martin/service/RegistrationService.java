@@ -5,12 +5,11 @@ import com.example.martin.domain.User;
 import com.example.martin.domain.enums.UserRole;
 import com.example.martin.util.EmailValidator;
 import com.example.martin.web.requests.RegistrationRequest;
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service

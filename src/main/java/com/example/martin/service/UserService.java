@@ -1,31 +1,28 @@
 package com.example.martin.service;
 
+import com.example.martin.domain.Authority;
 import com.example.martin.domain.ConfirmationToken;
-import com.example.martin.domain.Constants;
+import com.example.martin.config.Constants;
 import com.example.martin.domain.User;
 import com.example.martin.domain.enums.UserRole;
 import com.example.martin.repository.UserRepository;
+import com.example.martin.security.AuthoritiesConstants;
 import com.example.martin.service.notification.NotificationServiceHttpClient;
 import com.example.martin.web.requests.UserRequest;
 import com.example.martin.util.NotificationUtil;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tech.jhipster.security.RandomUtil;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
-public class UserService implements UserDetailsService {
+public class UserService {  // implements UserDetailsService
   private final static String USER_NOT_FOUND_MSG = "User with Email %s not found!";
   private final static String USER_EXISTS = "Email %s Taken!";
 
@@ -41,12 +38,12 @@ public class UserService implements UserDetailsService {
   }
 
 
-  @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    return userRepository.findByEmail(email)
-      .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
-
-  }
+//  @Override
+//  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//    return userRepository.findByEmail(email)
+//      .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+//
+//  }
 
   public String signUpUser(UserRequest userRequest, User loggedInUser) {
     userRequest.setUserRole(UserRole.ADMIN);
@@ -59,6 +56,8 @@ public class UserService implements UserDetailsService {
 
     return signUpUser(newUser);
   }
+
+
   public String signUpUser(User user) {
     log.info("Signing up caregiver {}", user);
 
@@ -97,6 +96,8 @@ public class UserService implements UserDetailsService {
     return sendEmailNotification(user, token);
 //        return token;
   }
+
+
   public String sendEmailNotification(User user, String token) {
 
     // TO DO :: Send Verification Email to user
