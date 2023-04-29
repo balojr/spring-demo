@@ -1,4 +1,4 @@
-package com.example.martin.dto;
+package com.example.martin.service.dto;
 
 import com.example.martin.domain.enums.UserRole;
 

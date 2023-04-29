@@ -1,4 +1,4 @@
-package com.example.martin.domain;
+package com.example.martin.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

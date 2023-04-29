@@ -2,6 +2,7 @@ package com.example.martin.security;
 
 import com.example.martin.domain.Authority;
 import com.example.martin.domain.User;
+import com.example.martin.exceptions.UserNotActivatedException;
 import com.example.martin.repository.UserRepository;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.slf4j.Logger;

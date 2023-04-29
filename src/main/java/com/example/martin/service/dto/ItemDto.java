@@ -1,4 +1,4 @@
-package com.example.martin.dto;
+package com.example.martin.service.dto;
 
 public interface ItemDto {
     Long getId();

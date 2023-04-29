@@ -1,8 +1,6 @@
 package com.example.martin.security.jwt;
 
-import com.example.martin.config.JHipsterProperties;
 import com.example.martin.management.SecurityMetersService;
-
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -14,7 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import tech.jhipster.config.JHipsterProperties;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -23,7 +23,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-
+@Component
 public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 

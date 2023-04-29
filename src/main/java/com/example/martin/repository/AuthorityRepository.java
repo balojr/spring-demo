@@ -1,0 +1,11 @@
+package com.example.martin.repository;
+
+import com.example.martin.domain.Authority;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+/**
+ * Spring Data JPA repository for the {@link Authority} entity.
+ */
+public interface AuthorityRepository extends JpaRepository<Authority, String> {
+
+}
