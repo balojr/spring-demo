@@ -1,9 +1,5 @@
 package com.example.martin.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 public class RestResponse {
   private boolean error;
   private String message;

@@ -26,6 +26,9 @@ import java.nio.file.Paths;
 
 import static java.net.URLDecoder.decode;
 
+/**
+ * Configuration of web application with Servlet 3.0 APIs.
+ */
 @Configuration
 public class WebConfigurer implements ServletContextInitializer, WebServerFactoryCustomizer<WebServerFactory> {
 
@@ -33,7 +36,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
 
     private final Environment env;
 
-    private final tech.jhipster.config.JHipsterProperties jHipsterProperties;
+    private final JHipsterProperties jHipsterProperties;
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
         this.env = env;

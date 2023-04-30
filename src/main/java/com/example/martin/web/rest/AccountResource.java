@@ -61,7 +61,7 @@ public class AccountResource {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-
+        log.info("user activation {} ",user.getActivationKey());
         // todo: send mail
     }
 

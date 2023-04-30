@@ -52,7 +52,7 @@ public class TokenProvider {
                     "Warning: the JWT key used is not Base64-encoded. " +
                             "We recommend using the `jhipster.security.authentication.jwt.base64-secret` key for optimum security."
             );
-            secret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
+            secret = "noIdeawhyNullPointerisThrownHere";//jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
             keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         }
         key = Keys.hmacShaKeyFor(keyBytes);

@@ -42,8 +42,11 @@ spring:
         starttls:
           enable: true
         connectiontimeout: 300000
-        timeout: 3000
+        timeout: 3000s
         writetimeout: 5000
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+clientApp:
+  name: Security Example

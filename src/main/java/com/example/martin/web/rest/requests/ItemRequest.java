@@ -1,9 +1,5 @@
 package com.example.martin.web.rest.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 public class ItemRequest {
   private Long id;

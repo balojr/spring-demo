@@ -1,9 +1,5 @@
 package com.example.martin.config;
 
-
-import com.example.martin.domain.Authority;
-import com.example.martin.domain.User;
-import com.example.martin.repository.UserRepository;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
@@ -31,16 +27,16 @@ public class CacheConfiguration {
     private BuildProperties buildProperties;
     private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
-    public CacheConfiguration(tech.jhipster.config.JHipsterProperties jHipsterProperties) {
+    public CacheConfiguration(JHipsterProperties jHipsterProperties) {
         JHipsterProperties.Cache.Ehcache ehcache = jHipsterProperties.getCache().getEhcache();
 
         jcacheConfiguration =
-                Eh107Configuration.fromEhcacheCacheConfiguration(
-                        CacheConfigurationBuilder
-                                .newCacheConfigurationBuilder(Object.class, Object.class, ResourcePoolsBuilder.heap(ehcache.getMaxEntries()))
-                                .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofSeconds(ehcache.getTimeToLiveSeconds())))
-                                .build()
-                );
+            Eh107Configuration.fromEhcacheCacheConfiguration(
+                CacheConfigurationBuilder
+                    .newCacheConfigurationBuilder(Object.class, Object.class, ResourcePoolsBuilder.heap(ehcache.getMaxEntries()))
+                    .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofSeconds(ehcache.getTimeToLiveSeconds())))
+                    .build()
+            );
     }
 
     @Bean
@@ -51,11 +47,11 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
-            createCache(cm, UserRepository.USERS_BY_LOGIN_CACHE);
-            createCache(cm, UserRepository.USERS_BY_EMAIL_CACHE);
-            createCache(cm, User.class.getName());
-            createCache(cm, Authority.class.getName());
-            createCache(cm, User.class.getName() + ".authorities");
+            createCache(cm, com.example.martin.repository.UserRepository.USERS_BY_LOGIN_CACHE);
+            createCache(cm, com.example.martin.repository.UserRepository.USERS_BY_EMAIL_CACHE);
+            createCache(cm, com.example.martin.domain.User.class.getName());
+            createCache(cm, com.example.martin.domain.Authority.class.getName());
+            createCache(cm, com.example.martin.domain.User.class.getName() + ".authorities");
         };
     }
 
@@ -82,5 +78,4 @@ public class CacheConfiguration {
     public KeyGenerator keyGenerator() {
         return new PrefixedKeyGenerator(this.gitProperties, this.buildProperties);
     }
-
 }

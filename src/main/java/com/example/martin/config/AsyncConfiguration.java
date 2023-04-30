@@ -21,6 +21,7 @@ import java.util.concurrent.Executor;
 @EnableScheduling
 @Profile("!testdev & !testprod")
 public class AsyncConfiguration implements AsyncConfigurer {
+
     private final Logger log = LoggerFactory.getLogger(AsyncConfiguration.class);
 
     private final TaskExecutionProperties taskExecutionProperties;

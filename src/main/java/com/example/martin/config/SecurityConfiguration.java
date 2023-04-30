@@ -1,6 +1,5 @@
 package com.example.martin.config;
 
-
 import com.example.martin.security.AuthoritiesConstants;
 import com.example.martin.security.jwt.JWTConfigurer;
 import com.example.martin.security.jwt.TokenProvider;
@@ -25,7 +24,7 @@ import tech.jhipster.config.JHipsterProperties;
 @Import(SecurityProblemSupport.class)
 public class SecurityConfiguration {
 
-    private final tech.jhipster.config.JHipsterProperties jHipsterProperties;
+    private final JHipsterProperties jHipsterProperties;
 
     private final TokenProvider tokenProvider;
 
@@ -33,10 +32,10 @@ public class SecurityConfiguration {
     private final SecurityProblemSupport problemSupport;
 
     public SecurityConfiguration(
-            TokenProvider tokenProvider,
-            CorsFilter corsFilter,
-            JHipsterProperties jHipsterProperties,
-            SecurityProblemSupport problemSupport
+        TokenProvider tokenProvider,
+        CorsFilter corsFilter,
+        JHipsterProperties jHipsterProperties,
+        SecurityProblemSupport problemSupport
     ) {
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
@@ -53,50 +52,50 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http
-                .csrf()
-                .ignoringAntMatchers("/h2-console/**")
-                .disable()
-                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling()
+            .csrf()
+            .ignoringAntMatchers("/h2-console/**")
+            .disable()
+            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+            .exceptionHandling()
                 .authenticationEntryPoint(problemSupport)
                 .accessDeniedHandler(problemSupport)
-                .and()
-                .headers()
+        .and()
+            .headers()
                 .contentSecurityPolicy(jHipsterProperties.getSecurity().getContentSecurityPolicy())
-                .and()
+            .and()
                 .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
-                .and()
+            .and()
                 .permissionsPolicy().policy("camera=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), sync-xhr=()")
-                .and()
+            .and()
                 .frameOptions().sameOrigin()
-                .and()
-                .sessionManagement()
+        .and()
+            .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/app/**/*.{js,html}").permitAll()
-                .antMatchers("/i18n/**").permitAll()
-                .antMatchers("/content/**").permitAll()
-                .antMatchers("/swagger-ui/**").permitAll()
-                .antMatchers("/test/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/activate").permitAll()
-                .antMatchers("/api/account/reset-password/init").permitAll()
-                .antMatchers("/api/account/reset-password/finish").permitAll()
-                .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/management/health").permitAll()
-                .antMatchers("/management/health/**").permitAll()
-                .antMatchers("/management/info").permitAll()
-                .antMatchers("/management/prometheus").permitAll()
-                .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .and()
-                .httpBasic()
-                .and()
-                .apply(securityConfigurerAdapter());
+        .and()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .antMatchers("/app/**/*.{js,html}").permitAll()
+            .antMatchers("/i18n/**").permitAll()
+            .antMatchers("/content/**").permitAll()
+            .antMatchers("/swagger-ui/**").permitAll()
+            .antMatchers("/test/**").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
+            .antMatchers("/api/authenticate").permitAll()
+            .antMatchers("/api/register").permitAll()
+            .antMatchers("/api/activate").permitAll()
+            .antMatchers("/api/account/reset-password/init").permitAll()
+            .antMatchers("/api/account/reset-password/finish").permitAll()
+            .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/**").authenticated()
+            .antMatchers("/management/health").permitAll()
+            .antMatchers("/management/health/**").permitAll()
+            .antMatchers("/management/info").permitAll()
+            .antMatchers("/management/prometheus").permitAll()
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+        .and()
+            .httpBasic()
+        .and()
+            .apply(securityConfigurerAdapter());
         return http.build();
         // @formatter:on
     }
